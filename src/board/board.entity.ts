@@ -1,30 +1,30 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn } from 'typeorm';
-import { ObjectType, Field, ID } from '@nestjs/graphql'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Timestamp } from 'typeorm';
+import { ObjectType, Field, ID, GraphQLTimestamp } from '@nestjs/graphql'
 
 @Entity("board")
 @ObjectType("board")
 export class BoardEntity {
     @Field(() => ID)
     @PrimaryGeneratedColumn()
-    id?: number;
+    id: number;
 
     @Field(() => String)    
     @Column({ type: "varchar", length: 10 })
-    writer?: string;
+    writer: string;
 
     @Field(() => String)
     @Column({ type: "varchar", length: 100 })
-    title?: string;
+    title: string;
 
     @Field(() => String)
     @Column({ type: "varchar", length: 1000 })
-    text?: string;
+    text: string;
 
-    @Field(() => Date)
+    @Field(() => GraphQLTimestamp)
     @CreateDateColumn()
-    date?: Date
+    date: Timestamp
 
-    @Field(() => Date)
+    @Field(() => GraphQLTimestamp)
     @UpdateDateColumn()
-    update?: Date
+    update: Timestamp
 }

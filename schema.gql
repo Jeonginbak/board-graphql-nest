@@ -7,14 +7,14 @@ type BoardDto {
   writer: String!
   title: String!
   text: String!
-  date: DateTime!
-  update: DateTime!
+  date: Timestamp!
+  update: Timestamp!
 }
 
 """
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
 """
-scalar DateTime
+scalar Timestamp
 
 type Query {
   readWriter(writer: String!): [BoardDto!]!
@@ -23,8 +23,7 @@ type Query {
 
 type Mutation {
   create(data: BoardInput!): BoardDto!
-  update(data: BoardInput!, id: ID!): BoardDto!
-  delete(id: ID!): BoardDto!
+  delete(id: ID!): Boolean!
 }
 
 input BoardInput {
@@ -32,6 +31,6 @@ input BoardInput {
   writer: String
   title: String
   text: String
-  date: DateTime
-  update: DateTime
+  date: Timestamp
+  update: Timestamp
 }

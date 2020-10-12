@@ -19,7 +19,11 @@ import { BoardModule } from './board/board.module';
     }), 
     BoardModule,
     GraphQLModule.forRoot({
+      debug: false,
       autoSchemaFile: 'schema.gql',
+      buildSchemaOptions: {
+        dateScalarMode: 'timestamp'
+      }
     })
 ]
 })
