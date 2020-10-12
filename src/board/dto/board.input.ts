@@ -1,7 +1,6 @@
-import { InputType, PartialType } from '@nestjs/graphql';
+import { PartialType, InputType } from '@nestjs/graphql';
 import { BoardDto } from './board.dto';
 
 @InputType()
-export class BoardInput extends PartialType(BoardDto, InputType) {
-
+export class BoardInput extends PartialType(BoardDto, InputType){
 }

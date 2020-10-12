@@ -7,23 +7,23 @@ type BoardDto {
   writer: String!
   title: String!
   text: String!
-  date: Timestamp!
-  update: Timestamp!
+  date: Date!
+  update: Date!
 }
 
-"""
-`Date` type as integer. Type represents date and time as number of milliseconds from start of UNIX epoch.
-"""
-scalar Timestamp
+"""Date custom scalar type"""
+scalar Date
 
 type Query {
   readWriter(writer: String!): [BoardDto!]!
   readAll: [BoardDto!]!
+  test: Boolean!
 }
 
 type Mutation {
   create(data: BoardInput!): BoardDto!
-  delete(id: ID!): Boolean!
+  update(text: String!, title: String!, id: ID!): BoardDto!
+  delete(id: ID!): BoardDto!
 }
 
 input BoardInput {
@@ -31,6 +31,6 @@ input BoardInput {
   writer: String
   title: String
   text: String
-  date: Timestamp
-  update: Timestamp
+  date: Date
+  update: Date
 }
