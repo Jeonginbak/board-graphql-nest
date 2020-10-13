@@ -6,7 +6,7 @@ export class BoardDto {
     @Field(() => ID)
     @IsNumber()
     readonly id: number;
-
+ 
     @Field()
     @IsString()
     readonly writer: string;

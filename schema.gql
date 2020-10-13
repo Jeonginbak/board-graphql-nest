@@ -17,13 +17,12 @@ scalar Date
 type Query {
   readWriter(writer: String!): [BoardDto!]!
   readAll: [BoardDto!]!
-  test: Boolean!
 }
 
 type Mutation {
   create(data: BoardInput!): BoardDto!
-  update(text: String!, title: String!, id: ID!): BoardDto!
-  delete(id: ID!): BoardDto!
+  update(text: String!, title: String!, id: ID!): BoardDto
+  delete(id: ID!): BoardDto
 }
 
 input BoardInput {

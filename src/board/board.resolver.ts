@@ -25,18 +25,17 @@ export class BoardResolver {
         return this.boardService.create(data)
     }
 
-    @Mutation(() => BoardDto)
+    @Mutation(() => BoardDto, { nullable : true })
     async update(
-    @Args('id',{type: ()=> ID}) id: number, 
+    @Args('id',{type: ()=> ID},) id: number,
     @Args('title') title: string,
     @Args('text') text: string): Promise<void> {
         const updateField = { title, text }
         await this.boardService.update(id, updateField)
     }
 
-    @Mutation(() => BoardDto)
+    @Mutation(() => BoardDto, { nullable : true })
     async delete(@Args('id', {type: () => ID}) id:number): Promise<void>{
         await this.boardService.delete(id);
-   
     }
 }

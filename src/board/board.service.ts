@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { BoardEntity } from './board.entity';
@@ -16,8 +16,8 @@ export class BoardService {
         const board = new BoardEntity();
         board.writer = boardInput.writer;
         board.title = boardInput.title;
-        board.text = boardInput.text;      
-        return await this.boardRepository.save(board)
+        board.text = boardInput.text;
+        return this.boardRepository.save(board)
     }
 
     //게시글 조회
@@ -30,13 +30,16 @@ export class BoardService {
         return await this.boardRepository.find({ writer: writer });
     }
 
+    // 특정 게시글 업데이트
     async update(id: number, update:BoardInput): Promise<void>{
-        await this.boardRepository.update(id, {...update})
+        await this.boardRepository.update(id, {
+            title: update.title,
+            text: update.text 
+        })
     }
     
-
+    // 게시글 삭제
     async delete(id: number): Promise<void>{
-        await this.boardRepository.delete(id)
-        
+        this.boardRepository.delete(id)
     }
 }
